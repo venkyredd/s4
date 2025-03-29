@@ -1,0 +1,4 @@
+# Ignore Terraform state & AWS CLI installer
+terraform/terraform.tfstate
+terraform/awscliv2.zip
+terraform/aws/
