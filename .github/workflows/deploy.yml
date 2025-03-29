@@ -33,15 +33,11 @@ jobs:
 
       - name: Apply Terraform Changes
         run: terraform apply -auto-approve
+        env:
+          TF_VAR_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
 
       - name: Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "
-
-name: Deploy Terraform to AWS
-
-on:
-  push:
-    branches:
+            --paths "/*"
